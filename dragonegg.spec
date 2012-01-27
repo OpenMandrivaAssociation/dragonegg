@@ -34,9 +34,9 @@ It has partial support for Go, Java, Obj-C and Obj-C++.
 %make						\
 	GCC=%__cc				\
 	LLVM_CONFIG=llvm-config			\
-	GCC_VERSION=gcc_version			\
+	GCC_VERSION=%{gcc_version}		\
 	REVISION=`llvm-config --version`	\
-	QUITET=+
+	VERBOSE=1
 
 #-----------------------------------------------------------------------
 %install
