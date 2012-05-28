@@ -2,13 +2,13 @@
 %define		gcc_plugindir		%(%__cc -print-file-name=plugin)
 
 Name:		dragonegg
-Version:	3.0
+Version:	3.1
 Release:	1
 Summary:	DragonEgg - Using LLVM as a GCC backend
 License:	NCSA
 Group:		Development/Other
 URL:		http://dragonegg.llvm.org
-Source0:	http://llvm.org/releases/3.0/dragonegg-3.0.tar.gz
+Source0:	http://llvm.org/releases/%{version}/dragonegg-%{version}.src.tar.gz
 BuildRequires:	gcc-plugin-devel
 BuildRequires:	llvm-devel
 
@@ -29,8 +29,10 @@ It has partial support for Go, Java, Obj-C and Obj-C++.
 %prep
 %setup -q -n %{name}-%{version}.src
 
+
 #-----------------------------------------------------------------------
 %build
+
 %make						\
 	GCC=%__cc				\
 	LLVM_CONFIG=llvm-config			\
