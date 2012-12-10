@@ -8,15 +8,15 @@ Summary:	DragonEgg - Using LLVM as a GCC backend
 License:	NCSA
 Group:		Development/Other
 URL:		http://dragonegg.llvm.org
-Source0:	http://llvm.org/releases/%{version}/dragonegg-%{version}.src.tar.gz
+Source0:	http://llvm.org/releases/%version/dragonegg-%version.src.tar.gz
 BuildRequires:	gcc-plugin-devel
 BuildRequires:	llvm-devel
 
 %description
 DragonEgg is a gcc plugin that replaces GCC's optimizers and code
-generators with those from the LLVM project. It works with gcc-4.5
-or gcc-4.6, targets the x86-32 and x86-64 processor families, and
-has been successfully used on the Darwin, FreeBSD, KFreeBSD, Linux
+generators with those from the LLVM project. It works with gcc-4.5,
+gcc-4.6, and gcc-4.7, targets the x86-32 and x86-64 processor families,
+and has been successfully used on the Darwin, FreeBSD, KFreeBSD, Linux
 and OpenBSD platforms. It fully supports Ada, C, C++ and Fortran.
 It has partial support for Go, Java, Obj-C and Obj-C++.
 
@@ -29,10 +29,8 @@ It has partial support for Go, Java, Obj-C and Obj-C++.
 %prep
 %setup -q -n %{name}-%{version}.src
 
-
 #-----------------------------------------------------------------------
 %build
-
 %make						\
 	GCC=%__cc				\
 	LLVM_CONFIG=llvm-config			\
@@ -53,3 +51,11 @@ cat > %{buildroot}%{_bindir}/%{name} << EOF
 gcc-%{gcc_version} -fplugin=%{gcc_plugindir}/%{name}.so "\$@"
 EOF
 chmod +x %{buildroot}%{_bindir}/%{name}
+
+
+%changelog
+* Fri Jan 27 2012 Paulo Andrade <pcpa@mandriva.com.br> 3.0-1
++ Revision: 769442
+- Import dragonegg 3.0
+- Import dragonegg 3.0
+
