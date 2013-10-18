@@ -1,0 +1,12 @@
+diff -up dragonegg-3.3.src/include/arm/dragonegg/Target.h.arm-target dragonegg-3.3.src/include/arm/dragonegg/Target.h
+--- dragonegg-3.3.src/include/arm/dragonegg/Target.h.arm-target	2013-03-11 11:14:04.000000000 -0600
++++ dragonegg-3.3.src/include/arm/dragonegg/Target.h	2013-08-03 14:46:54.968339252 -0600
+@@ -31,7 +31,7 @@
+    (isVoid || hasArgList). */
+ 
+ /* from  TARGET_AAPCS_BASED */
+-#define DEFAULT_TARGET_AAPCS_BASED(ARM_DEFAULT_ABI != ARM_ABI_APCS &&          \
++#define DEAULT_TARGET_AAPCS_BASED (ARM_DEFAULT_ABI != ARM_ABI_APCS &&          \
+                                    ARM_DEFAULT_ABI != ARM_ABI_ATPCS)
+ 
+ #define TARGET_ADJUST_LLVM_CC(CC, type)                                        \

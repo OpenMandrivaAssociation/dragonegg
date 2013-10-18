@@ -1,14 +1,17 @@
+%define _disable_ld_no_undefined 1
+
 %define		gcc_version		%(%__cc -dumpversion)
 %define		gcc_plugindir		%(%__cc -print-file-name=plugin)
 
-Name:		dragonegg
-Version:	3.1
-Release:	1
 Summary:	DragonEgg - Using LLVM as a GCC backend
+Name:		dragonegg
+Version:	3.3
+Release:	1
 License:	NCSA
 Group:		Development/Other
-URL:		http://dragonegg.llvm.org
+Url:		http://dragonegg.llvm.org
 Source0:	http://llvm.org/releases/%version/dragonegg-%version.src.tar.gz
+Patch0:		dragonegg-3.3-arm-target.patch
 BuildRequires:	gcc-plugin-devel
 BuildRequires:	llvm-devel
 
@@ -21,21 +24,22 @@ and OpenBSD platforms. It fully supports Ada, C, C++ and Fortran.
 It has partial support for Go, Java, Obj-C and Obj-C++.
 
 %files
+%doc %{_docdir}/%{name}
 %{_bindir}/%{name}
 %{gcc_plugindir}/%{name}.so
-%doc %{_docdir}/%{name}
 
-#-----------------------------------------------------------------------
+#----------------------------------------------------------------------------
 %prep
 %setup -q -n %{name}-%{version}.src
+%patch0 -p1 -b .arm~
 
-#-----------------------------------------------------------------------
 %build
-%make						\
-	GCC=%__cc				\
-	LLVM_CONFIG=llvm-config			\
-	GCC_VERSION=%{gcc_version}		\
-	REVISION=`llvm-config --version`	\
+%setup_compile_flags
+%make	\
+	GCC=%__cc \
+	LLVM_CONFIG=llvm-config \
+	GCC_VERSION=%{gcc_version} \
+	REVISION=`llvm-config --version` \
 	VERBOSE=1
 
 #-----------------------------------------------------------------------
@@ -51,11 +55,4 @@ cat > %{buildroot}%{_bindir}/%{name} << EOF
 gcc-%{gcc_version} -fplugin=%{gcc_plugindir}/%{name}.so "\$@"
 EOF
 chmod +x %{buildroot}%{_bindir}/%{name}
-
-
-%changelog
-* Fri Jan 27 2012 Paulo Andrade <pcpa@mandriva.com.br> 3.0-1
-+ Revision: 769442
-- Import dragonegg 3.0
-- Import dragonegg 3.0
 
