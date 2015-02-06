@@ -6,7 +6,7 @@
 Summary:	DragonEgg - Using LLVM as a GCC backend
 Name:		dragonegg
 Version:	3.3
-Release:	1
+Release:	2
 License:	NCSA
 Group:		Development/Other
 Url:		http://dragonegg.llvm.org
