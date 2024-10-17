@@ -9,7 +9,7 @@ Version:	3.3
 Release:	2
 License:	NCSA
 Group:		Development/Other
-Url:		http://dragonegg.llvm.org
+Url:		https://dragonegg.llvm.org
 Source0:	http://llvm.org/releases/%version/dragonegg-%version.src.tar.gz
 Patch0:		dragonegg-3.3-arm-target.patch
 BuildRequires:	gcc-plugin-devel
